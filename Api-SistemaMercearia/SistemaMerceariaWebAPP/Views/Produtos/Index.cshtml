@@ -1,0 +1,38 @@
+﻿@model List<Produtos>
+
+<br />
+
+@for(int i = 0; i < Model.Count; i+= 2)
+{
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@Model[i].Descricao</h5>
+                    <p class="card-text">Marca: @Model[i].Marca <br />
+                                         Valor: @Model[i].Valor<br />
+                                         Estoque: @Model[i].Estoque</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        @if(i + 1 < Model.Count)
+        {
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model[i + 1].Descricao</h5>
+                        <p class="card-text">Marca: @Model[i + 1].Marca <br />
+                                             Valor: @Model[i + 1].Valor <br />
+                                             Estoque: @Model[i + 1].Estoque</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+
+    <br />
+}

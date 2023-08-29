@@ -34,9 +34,9 @@ namespace Api_SistemaMercearia.Controllers
 
 			if (resposta)
 			{
-				return Ok("deu bom");
+				return Ok("Produto Adicionado com sucesso");
 			}
-			return BadRequest("Vish");
+			return BadRequest("Ocorreu um problema ao tentar salvar o produto");
 
 		}
 
@@ -59,9 +59,9 @@ namespace Api_SistemaMercearia.Controllers
 
 			if (resposta)
 			{
-				return Ok("deu bom");
+				return Ok("Produto apagado com sucesso");
 			}
-			return BadRequest("Vish");
+			return BadRequest("Ocorreu uma falha ao tentar apagar o produto");
 
 		}
 
