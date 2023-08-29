@@ -8,7 +8,7 @@
         public string Marca { get; set; }
         public double Valor { get; set; }
         public int Estoque { get; set; }
-        public IEnumerable<ProdutoVenda> Vendas { get; set; }
+        public IEnumerable<ProdutoVenda>? Vendas { get; set; }
 
         public Produto(string descricao, string marca, double valor, int estoque)
         {
