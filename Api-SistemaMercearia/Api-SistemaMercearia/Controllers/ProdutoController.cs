@@ -19,12 +19,21 @@ namespace Api_SistemaMercearia.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ProdutoDTO>> GetAllProducts()
+        public async Task<List<Produto>> GetAllProducts()
         {
 			var products = await _context.GetAllProducts();
 			List<ProdutoDTO> result = _mapper.Map<IEnumerable<ProdutoDTO>>(products).ToList();
-			return result;
+			return products.ToList();
         }
+
+		[HttpGet("{id}")]
+		public async Task<Produto>GetProductById(int id)
+		{
+			var product = await _context.GetProductById(id);
+			return product;
+		}
+
+
 		[HttpPost]
 		public async Task<IActionResult> Add(ProdutoDTO productDTO)
 		{
@@ -41,9 +50,10 @@ namespace Api_SistemaMercearia.Controllers
 		}
 
 		[HttpPut]
-		public ActionResult PutProduct(int id)
+		public async Task<ActionResult> PutProduct(Produto produto)
 		{
-			return Ok("ok");
+			await _context.PutProduct(produto);
+			return Ok();
 		}
 
 		[HttpPatch]

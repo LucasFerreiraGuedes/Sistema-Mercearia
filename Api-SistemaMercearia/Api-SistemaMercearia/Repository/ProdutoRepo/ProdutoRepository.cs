@@ -55,10 +55,49 @@ namespace Api_SistemaMercearia.Repository.ProdutoRepo
 
 		
 
-		public async Task<Produto> PutProduct(int id, Produto produto)
+		public async Task<Produto> PutProduct(Produto produto)
 		{
-			throw new NotImplementedException();
+			try
+			{
+                var product = await GetProductById(produto.Id);
+
+                if (product != null)
+                {
+                    product.Codigo = produto.Codigo;
+                    product.Descricao = produto.Descricao;
+                    product.Estoque = produto.Estoque;
+					product.Valor = produto.Valor;
+					
+
+                    _contextDb.Update(product);
+                    _contextDb.SaveChanges();
+                    return product;
+                }
+                else
+                {
+                    throw new Exception("O id do produto não foi encontrado na base de dados");
+                }
+            }
+			catch (Exception e)
+			{
+				throw;
+				
+			}
+			
 		}
-		
-	}
+
+        public async Task<Produto> GetProductById(int id)
+        {
+            var product = await _contextDb.Produtos.FirstOrDefaultAsync(x => x.Id == id);
+
+			if(product != null )
+			{
+				return product;
+			}
+            else
+            {
+                throw new Exception("O id do produto não foi encontrado na base de dados");
+            }
+        }
+    }
 }

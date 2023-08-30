@@ -7,6 +7,8 @@ namespace Api_SistemaMercearia.Repository.ProdutoRepo
 		Task<IEnumerable<Produto>> GetAllProducts();
 		Task<Boolean> DeleteProduct(int id);
 
-		Task<Produto> PutProduct(int id,Produto produto);
+		Task<Produto> PutProduct(Produto produto);
+
+		Task<Produto> GetProductById(int id);
 	}
 }

@@ -1,5 +1,14 @@
-﻿@model List<Produtos>
+﻿@model List<Produto>
 
+<div class="text-center">
+    <h2>Todos os Produtos Cadastrados no Sistema!</h2>
+</div>
+
+<br />
+
+<a type="button" class="btn btn-success" asp-controller="Produtos" asp-action="AdicionarProduto">Adicionar Produto</a>
+
+<br />
 <br />
 
 @for(int i = 0; i < Model.Count; i+= 2)
@@ -12,7 +21,11 @@
                     <p class="card-text">Marca: @Model[i].Marca <br />
                                          Valor: @Model[i].Valor<br />
                                          Estoque: @Model[i].Estoque</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                    <a type="button" class="btn btn-primary">Info</a>
+                    <a type="button" class="btn btn-danger"asp-controller="Produtos" asp-action="Apagar" asp-route-id="@Model[i].Id">Apagar</a>
+                        <a type="button" class="btn btn-warning" asp-controller="Produtos" asp-action="EditarProduto" asp-route-id="@Model[i].Id">Editar</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,7 +39,11 @@
                         <p class="card-text">Marca: @Model[i + 1].Marca <br />
                                              Valor: @Model[i + 1].Valor <br />
                                              Estoque: @Model[i + 1].Estoque</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a type="button" class="btn btn-primary">Info</a>
+                            <a type="button" class="btn btn-danger" asp-controller="Produtos" asp-action="Apagar" asp-route-id="@Model[i+ 1].Id">Apagar</a>
+                            <a type="button" class="btn btn-warning" asp-controller="Produtos" asp-action="EditarProduto" asp-route-id="@Model[i +1].Id">Editar</a>
+                        </div>
                     </div>
                 </div>
             </div>
