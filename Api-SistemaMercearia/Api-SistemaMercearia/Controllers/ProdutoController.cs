@@ -45,7 +45,7 @@ namespace Api_SistemaMercearia.Controllers
 			{
 				return Ok("Produto Adicionado com sucesso");
 			}
-			return BadRequest("Ocorreu um problema ao tentar salvar o produto");
+			throw new Exception("O produto não pode ser nulo");
 
 		}
 
@@ -65,13 +65,15 @@ namespace Api_SistemaMercearia.Controllers
 		[HttpDelete]
 		public async Task<ActionResult> DeleteProduct(int id)
 		{
-			var resposta = await _context.DeleteProduct(id);
 
-			if (resposta)
-			{
-				return Ok("Produto apagado com sucesso");
-			}
-			return BadRequest("Ocorreu uma falha ao tentar apagar o produto");
+            var resposta = await _context.DeleteProduct(id);
+
+            if (resposta)
+            {
+                return Ok("Produto apagado com sucesso");
+            }
+
+			throw new Exception("Não existe produto presente no banco que contenha este ID");
 
 		}
 

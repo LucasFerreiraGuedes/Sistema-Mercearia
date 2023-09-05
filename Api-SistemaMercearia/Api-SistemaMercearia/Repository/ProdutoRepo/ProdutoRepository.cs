@@ -21,7 +21,7 @@ namespace Api_SistemaMercearia.Repository.ProdutoRepo
 
 			try
 			{
-				if(entity is Produto)
+				if (entity is Produto && entity != null)
 				{
 					Produto product = entity as Produto;
 					_contextDb.Add(product);
@@ -96,7 +96,8 @@ namespace Api_SistemaMercearia.Repository.ProdutoRepo
 			}
             else
             {
-                throw new Exception("O id do produto não foi encontrado na base de dados");
+				return null;
+                //throw new Exception("O id do produto não foi encontrado na base de dados");
             }
         }
     }
