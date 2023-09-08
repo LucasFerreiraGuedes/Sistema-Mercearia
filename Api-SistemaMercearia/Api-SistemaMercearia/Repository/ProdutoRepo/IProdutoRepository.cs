@@ -1,8 +1,8 @@
-﻿using Api_SistemaMercearia.Models;
+﻿using Api_SistemaMercearia.Models.Products;
 
 namespace Api_SistemaMercearia.Repository.ProdutoRepo
 {
-	public interface IProdutoRepository : IRepository
+    public interface IProdutoRepository : IRepository
 	{
 		Task<IEnumerable<Produto>> GetAllProducts();
 		Task<Boolean> DeleteProduct(int id);

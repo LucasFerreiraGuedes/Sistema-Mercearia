@@ -1,4 +1,6 @@
-﻿namespace Api_SistemaMercearia.Models
+﻿using Api_SistemaMercearia.Models.Products;
+
+namespace Api_SistemaMercearia.Models
 {
     public class Venda
     {

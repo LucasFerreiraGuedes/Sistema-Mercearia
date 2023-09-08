@@ -4,6 +4,7 @@ using Api_SistemaMercearia.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api_SistemaMercearia.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20230908185538_Uf-Nullanle")]
+    partial class UfNullanle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace Api_SistemaMercearia.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Api_SistemaMercearia.Models.Products.Produto", b =>
+            modelBuilder.Entity("Api_SistemaMercearia.Models.Produto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +55,7 @@ namespace Api_SistemaMercearia.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("Api_SistemaMercearia.Models.Products.ProdutoVenda", b =>
+            modelBuilder.Entity("Api_SistemaMercearia.Models.ProdutoVenda", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,7 +81,7 @@ namespace Api_SistemaMercearia.Migrations
                     b.ToTable("ProdutosVendas");
                 });
 
-            modelBuilder.Entity("Api_SistemaMercearia.Models.User.Usuario", b =>
+            modelBuilder.Entity("Api_SistemaMercearia.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -96,7 +99,8 @@ namespace Api_SistemaMercearia.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
@@ -130,9 +134,9 @@ namespace Api_SistemaMercearia.Migrations
                     b.ToTable("Vendas");
                 });
 
-            modelBuilder.Entity("Api_SistemaMercearia.Models.Products.ProdutoVenda", b =>
+            modelBuilder.Entity("Api_SistemaMercearia.Models.ProdutoVenda", b =>
                 {
-                    b.HasOne("Api_SistemaMercearia.Models.Products.Produto", "Produto")
+                    b.HasOne("Api_SistemaMercearia.Models.Produto", "Produto")
                         .WithMany("Vendas")
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -149,7 +153,7 @@ namespace Api_SistemaMercearia.Migrations
                     b.Navigation("Venda");
                 });
 
-            modelBuilder.Entity("Api_SistemaMercearia.Models.Products.Produto", b =>
+            modelBuilder.Entity("Api_SistemaMercearia.Models.Produto", b =>
                 {
                     b.Navigation("Vendas");
                 });

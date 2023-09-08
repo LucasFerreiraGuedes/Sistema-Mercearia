@@ -1,4 +1,4 @@
-﻿namespace Api_SistemaMercearia.Models
+﻿namespace Api_SistemaMercearia.Models.Products
 {
     public class Produto
     {

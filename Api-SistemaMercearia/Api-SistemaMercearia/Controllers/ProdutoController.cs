@@ -1,12 +1,12 @@
 ﻿using Api_SistemaMercearia.DTO_s;
-using Api_SistemaMercearia.Models;
+using Api_SistemaMercearia.Models.Products;
 using Api_SistemaMercearia.Repository.ProdutoRepo;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api_SistemaMercearia.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class ProdutoController : ControllerBase
 	{
@@ -19,18 +19,39 @@ namespace Api_SistemaMercearia.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Produto>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ProdutoDTO>>> GetAllProducts()
         {
 			var products = await _context.GetAllProducts();
-			List<ProdutoDTO> result = _mapper.Map<IEnumerable<ProdutoDTO>>(products).ToList();
-			return products.ToList();
+
+			if(products.Count() != 0) 
+			{
+				List<ProdutoDTO> result = _mapper.Map<IEnumerable<ProdutoDTO>>(products).ToList();
+				return Ok(result);
+			}
+			var problemDetails = new ProblemDetails()
+			{
+				Title = "Não há nenhum produto cadastrado na base de dados",
+				Status = 404
+
+			};
+			return NotFound(problemDetails);
+
+			
+			
         }
 
 		[HttpGet("{id}")]
-		public async Task<Produto>GetProductById(int id)
+		public async Task<ActionResult<ProdutoDTO>> GetProductById(int id)
 		{
 			var product = await _context.GetProductById(id);
-			return product;
+
+			if(product != null)
+			{
+				var productDTO = _mapper.Map<ProdutoDTO>(product);
+				return Ok(productDTO);
+			}
+			return NotFound();
+			
 		}
 
 
@@ -73,7 +94,13 @@ namespace Api_SistemaMercearia.Controllers
                 return Ok("Produto apagado com sucesso");
             }
 
-			throw new Exception("Não existe produto presente no banco que contenha este ID");
+			var problemDetails = new ProblemDetails()
+			{
+				Title = "Não existe produto no Banco de Dados que contenha este ID",
+				Status = 400,
+				
+			};
+			return BadRequest(problemDetails);
 
 		}
 

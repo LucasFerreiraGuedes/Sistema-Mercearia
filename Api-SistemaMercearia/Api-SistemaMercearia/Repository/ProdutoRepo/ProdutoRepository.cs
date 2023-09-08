@@ -1,10 +1,10 @@
 ﻿using Api_SistemaMercearia.Context;
-using Api_SistemaMercearia.Models;
+using Api_SistemaMercearia.Models.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api_SistemaMercearia.Repository.ProdutoRepo
 {
-	public class ProdutoRepository : IProdutoRepository
+    public class ProdutoRepository : IProdutoRepository
 	{
 		private  ContextDb _contextDb;
         public ProdutoRepository(ContextDb contextDb)
