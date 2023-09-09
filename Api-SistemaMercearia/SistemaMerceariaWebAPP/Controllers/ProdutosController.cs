@@ -14,9 +14,15 @@ namespace SistemaMerceariaWebAPP.Controllers
 			var request = new RestRequest("https://localhost:7123/api/Produto", Method.Get);
 
 			RestResponse response = await client.ExecuteAsync(request);
-			List<Produto> produtos = JsonConvert.DeserializeObject<List<Produto>>(response.Content);
 
-			return View(produtos);
+			if(response.IsSuccessful)
+			{
+                List<Produto> produtos = JsonConvert.DeserializeObject<List<Produto>>(response.Content);
+
+                return View(produtos);
+            }
+			return View();
+			
 		}
 
 		public IActionResult AdicionarProduto()

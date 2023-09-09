@@ -1,3 +1,43 @@
-﻿<div>
-  <img src="../../wwwroot/images.png" >
-</div>
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Página de Login";
+}
+
+<h1>Login</h1>
+
+<br />
+
+<form asp-controller="Usuario" asp-action="LoginUser" method="post">
+    <div class="d-flex justify-content-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="Email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Digite seu e-mail">
+                   
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="Senha" class="form-label">Senha</label>
+                    <input type="password" class="form-control" asp-for="Senha" placeholder="Digite sua senha">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                   <a asp-controller="Usuario" asp-action="CadastrarUsuario"> Cadastra-se aqui </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+           
+    </div>
+    </div>
+   
+</form>

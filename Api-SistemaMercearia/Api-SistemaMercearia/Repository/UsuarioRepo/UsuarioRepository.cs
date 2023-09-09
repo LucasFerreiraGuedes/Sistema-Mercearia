@@ -25,7 +25,12 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 			return false;
 		}
 
-		public async Task<Usuario> GetUserById(int id)
+        public async Task<IEnumerable<Usuario>> GetAllUsers()
+        {
+			return _contextDb.Usuarios;
+        }
+
+        public async Task<Usuario> GetUserById(int id)
 		{
 			Usuario user = await _contextDb.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
 			return user;
@@ -33,20 +38,16 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 
         public async Task<bool> Login(string email, string password)
         {
-           var usuario = await _contextDb.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
+            string senhaCriptografada = UserCryptographyPassword.Cryptography(password);
+
+            var usuario = await _contextDb.Usuarios.FirstOrDefaultAsync(x => x.Email == email && x.Senha == senhaCriptografada);
 
 			if(usuario == null) 
 			{
 				return false;
 			}
+			return true;
 
-			string senhaCriptografada = UserCryptographyPassword.Cryptography(password);
-
-            if (usuario.Senha == senhaCriptografada)
-			{
-				return true;
-			}
-			return false;
         }
     }
 }

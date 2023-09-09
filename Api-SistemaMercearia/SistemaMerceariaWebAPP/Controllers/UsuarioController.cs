@@ -16,6 +16,28 @@ namespace SistemaMerceariaWebAPP.Controllers
         {
             return View();
         }
+        public async Task<ActionResult> LoginUser(Usuario user)
+        {
+            client = new RestClient();
+            var request = new RestRequest("https://localhost:7123/api/Usuario/login", Method.Post);
+
+            var usuario = new
+            {
+                Email = $"{user.Email}",
+                Senha = $"{user.Senha}"
+            };
+            request.RequestFormat = DataFormat.Json;
+            request.AddJsonBody(usuario);
+
+            RestResponse response = await client.ExecuteAsync(request);
+
+            if (response.IsSuccessful)
+            {
+                return RedirectToAction("RecuperarTodosUsuarios");
+                //return RedirectToAction("Index","Produtos");
+            }
+            return View("Usuarios");
+        }
         public async Task<ActionResult> CadastrarUsuario()
         {
         //    client = new RestClient();
@@ -49,5 +71,19 @@ namespace SistemaMerceariaWebAPP.Controllers
 
             return RedirectToAction("CadastrarUsuario");
         }
+
+        public async Task<ActionResult> RecuperarTodosUsuarios()
+        {
+            client = new RestClient();
+            var request = new RestRequest("https://localhost:7123/api/Usuario/AllUsers", Method.Get);
+
+            RestResponse response = await client.ExecuteAsync(request);
+
+            // Fazer a tratativa do Response aqui
+
+            return View("Usuarios",response);
+
+        }
+       
     }
 }
