@@ -6,6 +6,8 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 	{
 	     Task<Usuario> GetUserById(int id);
 		Task<IEnumerable<Usuario>> GetAllUsers();
+		
+		Task<Usuario> GetUserByEmailAsync(string email);
 
 		Task<bool> Login(string email, string password);
 

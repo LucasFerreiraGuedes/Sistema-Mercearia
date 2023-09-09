@@ -37,7 +37,19 @@ namespace Api_SistemaMercearia.Controllers
             }
             return Ok(usuarios);
 
-        } 
+        }
+        [HttpGet("GetUserByEmail")]
+        public async Task<ActionResult<Usuario>> GetUserByEmail(string email)
+        {
+            Usuario user = await _context.GetUserByEmailAsync(email);
+            
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+
+        }
 
         [HttpPost]
         public async Task<ActionResult<Usuario>> Post(Usuario user)

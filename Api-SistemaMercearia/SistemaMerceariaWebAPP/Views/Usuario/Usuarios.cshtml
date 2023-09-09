@@ -7,6 +7,13 @@
 <h1>Usuarios</h1>
 
 
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="text-center alert alert-danger" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>

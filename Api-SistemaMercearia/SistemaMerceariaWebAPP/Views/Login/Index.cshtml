@@ -8,7 +8,7 @@
 
 <br />
 
-<form asp-controller="Usuario" asp-action="LoginUser" method="post">
+<form asp-controller="Login" asp-action="LoginUser" method="post">
     <div class="d-flex justify-content-center">
         <div class="container">
             <div class="row">
@@ -39,5 +39,11 @@
            
     </div>
     </div>
-   
 </form>
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="text-center alert alert-danger" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}

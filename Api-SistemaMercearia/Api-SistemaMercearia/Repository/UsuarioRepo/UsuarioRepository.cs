@@ -30,6 +30,17 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 			return _contextDb.Usuarios;
         }
 
+        public async Task<Usuario> GetUserByEmailAsync(string email)
+        {
+            Usuario user = await _contextDb.Usuarios.FirstOrDefaultAsync(x => x.Email == email);
+
+			if(user != null)
+			{
+				return user;
+			}
+			return null;
+        }
+
         public async Task<Usuario> GetUserById(int id)
 		{
 			Usuario user = await _contextDb.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
