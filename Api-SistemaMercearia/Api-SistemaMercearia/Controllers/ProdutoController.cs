@@ -21,6 +21,7 @@ namespace Api_SistemaMercearia.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProdutoDTO>>> GetAllProducts()
         {
+
 			var products = await _context.GetAllProducts();
 
 			if(products.Count() != 0) 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using RestSharp;
 using SistemaMerceariaWebAPP.Models;
@@ -15,39 +16,43 @@ namespace SistemaMerceariaWebAPP.Controllers
       
         public async Task<ActionResult> CadastrarUsuario()
         {
-        //    client = new RestClient();
-        //    var request = new RestRequest("https://servicodados.ibge.gov.br/api/v1/localidades/estados", Method.Get);
+            client = new RestClient();
+            var request = new RestRequest("https://servicodados.ibge.gov.br/api/v1/localidades/estados", Method.Get);
 
-        //    RestResponse response = await client.ExecuteAsync(request);
-        //    List<Sigla> produtos = JsonConvert.DeserializeObject<List<Sigla>>(response.Content);
+            RestResponse response = await client.ExecuteAsync(request);
+            List<Sigla> siglasEstados = JsonConvert.DeserializeObject<List<Sigla>>(response.Content);
 
-        //    List<string> siglas = new List<string>();
-        //    foreach(var item in produtos)
-        //    {
-        //        siglas.Add(item.sigla);
-        //    }
-        //    Usuario user = new Usuario();
+           UsuarioViewModel usuarioViewModel = new UsuarioViewModel();
             
-           // return View(produtos);
+            siglasEstados = siglasEstados.OrderBy(x => x.sigla).ToList();
 
-            return View();
+            foreach (var item in siglasEstados)
+            {
+                usuarioViewModel.SiglasEstado.Add(new SelectListItem { Text = item.sigla, Value = item.sigla} );
+            }
+            
+            //Os metódos acima são responsáveis por realizar o consumo de uma API do governo federal, na qual me provém a sigla de todos os estados do País.
+            //Eu consumo esta informação e a coloco em um dropdown de seleção para o usuário
+
+            return View(usuarioViewModel);
         }
 
-        public async Task<ActionResult> CadastroUsuario(Usuario user)
+        [HttpPost]
+        public async Task<ActionResult> CadastroUsuario(UsuarioViewModel usuarioViewModel)
         {
             client = new RestClient();
             var request = new RestRequest("https://localhost:7123/api/Usuario", Method.Post);
 
             request.RequestFormat = DataFormat.Json;
-            request.AddJsonBody(user);
+            request.AddJsonBody(usuarioViewModel.Usuario);
 
             RestResponse response = await client.ExecuteAsync(request);
 
 
-            return RedirectToAction("CadastrarUsuario");
+            return RedirectToAction("GetAllUsers");
         }
 
-        public async Task<ActionResult> TodosUsuarios()
+        public async Task<ActionResult> GetAllUsers()
         {
             // Método responsável por recuperar todos os usuários
 

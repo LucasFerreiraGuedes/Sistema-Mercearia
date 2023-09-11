@@ -21,7 +21,7 @@ namespace SistemaMerceariaWebAPP.Controllers
 
             if (_sessionUser.BuscarSessaoUsuario() != null)
             {
-                return RedirectToAction("TodosUsuarios", "Usuario");
+                return RedirectToAction("GetAllUsers", "Usuario");
             }
             return View();
         }
@@ -50,7 +50,7 @@ namespace SistemaMerceariaWebAPP.Controllers
                 user = JsonConvert.DeserializeObject<Usuario>(response.Content);
 
                 _sessionUser.CriarSessaoUsuario(user);
-                return RedirectToAction("TodosUsuarios", "Usuario");
+                return RedirectToAction("GetAllUsers", "Usuario");
                 
             }
             TempData["MensagemErro"] = $"E-mail ou senha inválidos, por favor tente novamente";
