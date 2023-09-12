@@ -15,7 +15,7 @@ namespace Api_SistemaMercearia.Controllers
             _context = context;
         }
 
-        [HttpGet] 
+        [HttpGet("GetUserById")] 
         public async Task<ActionResult<Usuario>> GetById(int id)
         {
             var user = await _context.GetUserById(id); 
@@ -74,7 +74,7 @@ namespace Api_SistemaMercearia.Controllers
             {
                 return BadRequest("Não foi encontrado no banco de dados este usuário");
             }
-            return Ok(user);
+            return Ok();
 
         }
 

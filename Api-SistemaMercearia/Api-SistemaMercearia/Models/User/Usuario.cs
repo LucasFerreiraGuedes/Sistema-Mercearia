@@ -17,9 +17,16 @@ namespace Api_SistemaMercearia.Models.User
         {
             Name = name;
             Email = email;
-            Senha = UserCryptographyPassword.Cryptography(senha);
             Telefone = telefone;
             UF = uF;
+            if (senha.Length > 20)
+            {
+                Senha = senha;
+            }
+            else
+            {
+                Senha = UserCryptographyPassword.Cryptography(senha);
+            }
         }
     }
 }

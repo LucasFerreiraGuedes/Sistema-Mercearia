@@ -96,6 +96,27 @@ namespace SistemaMerceariaWebAPP.Controllers
             return View();
             
         }
+        public IActionResult EditarInformacoes()
+        {
+            var usuario = _sessionUser.BuscarSessaoUsuario();
+            return View(usuario);
+        }
+        public IActionResult SalvarAtualizacaoInformacoes(Usuario usuario)
+        {
+            client = new RestClient();
+            var request = new RestRequest("https://localhost:7123/api/Usuario", Method.Put);
+
+            request.RequestFormat = DataFormat.Json;
+            request.AddJsonBody(usuario);
+
+            RestResponse response = client.Execute(request);
+
+            _sessionUser.RemoverSessaoUsuario();
+            _sessionUser.CriarSessaoUsuario(usuario);
+
+            return View("Perfil",usuario);
+
+        }
        
     }
 }

@@ -5,6 +5,7 @@
 }
 
 <div class="card" style="width: 18rem;">
+
     <img src="~/images.png" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">@Model.Name</h5>
@@ -15,7 +16,7 @@
                               @Model.UF
                              
         </p>
-        <a href="#" class="btn btn-warning">Editar</a>
+        <a class="btn btn-warning" asp-controller="Usuario" asp-action="EditarInformacoes">Editar</a>
         <a asp-controller="Login" asp-action="LogoutUser" class="btn btn-danger">Logout</a>
     </div>
 </div>

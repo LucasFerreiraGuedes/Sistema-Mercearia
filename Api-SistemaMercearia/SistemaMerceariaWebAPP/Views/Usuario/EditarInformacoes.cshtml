@@ -1,0 +1,28 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Editar Informações";
+}
+
+<h1>Editar Informações</h1>
+
+
+<form asp-controller="Usuario" asp-action="SalvarAtualizacaoInformacoes" method="post">
+    <input type="hidden" asp-for="@Model.Senha" />
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="UF" />
+
+    <div class="form-group">
+        <label for="Name" class="form-label">Nome</label>
+        <input type="text" required="true" class="form-control" asp-for="@Model.Name" />
+    </div>
+    <div class="form-group">
+        <label for="Email" class="form-label">E-mail</label>
+        <input type="email" required="true" class="form-control" asp-for="@Model.Email">
+    </div>
+    <div class="form-group">
+        <label for="Telefone" class="form-label">Telefone</label>
+        <input type="text" class="form-control" asp-for="@Model.Telefone">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
