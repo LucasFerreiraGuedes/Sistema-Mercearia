@@ -56,5 +56,12 @@ namespace SistemaMerceariaWebAPP.Controllers
             TempData["MensagemErro"] = $"E-mail ou senha inválidos, por favor tente novamente";
             return RedirectToAction("Index");
         }
+
+        public IActionResult LogoutUser()
+        {
+            _sessionUser.RemoverSessaoUsuario();
+            return RedirectToAction("Index");
+        }
+
     }
 }

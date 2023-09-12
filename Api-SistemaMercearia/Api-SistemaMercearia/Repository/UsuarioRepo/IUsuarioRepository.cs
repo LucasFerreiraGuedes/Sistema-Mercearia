@@ -1,4 +1,5 @@
-﻿using Api_SistemaMercearia.Models.User;
+﻿using Api_SistemaMercearia.DTO_s;
+using Api_SistemaMercearia.Models.User;
 
 namespace Api_SistemaMercearia.Repository.UsuarioRepo
 {
@@ -10,6 +11,10 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 		Task<Usuario> GetUserByEmailAsync(string email);
 
 		Task<bool> Login(string email, string password);
+
+		Task<Usuario> AlterarInformacoesAsync(Usuario usuario);
+
+		Task<Usuario> PatchPasswordUser(PatchPasswordUserDTO userDTO);
 
 	}
 }

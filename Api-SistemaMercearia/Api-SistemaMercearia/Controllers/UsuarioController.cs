@@ -51,6 +51,33 @@ namespace Api_SistemaMercearia.Controllers
 
         }
 
+
+        [HttpPut]
+        public async Task<ActionResult<Usuario>> Put(Usuario usuario)
+        {
+            var user = await _context.AlterarInformacoesAsync(usuario);
+
+            if(user == null)
+            {
+                return BadRequest("Nào foi encontrado no banco de dados este usuário");
+            }
+
+            return Ok(user);
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<Usuario>> PatchPassword(PatchPasswordUserDTO userPasswordDTO)
+        {
+            var user = _context.PatchPasswordUser(userPasswordDTO);
+
+            if(user == null)
+            {
+                return BadRequest("Não foi encontrado no banco de dados este usuário");
+            }
+            return Ok(user);
+
+        }
+
         [HttpPost]
         public async Task<ActionResult<Usuario>> Post(Usuario user)
         {

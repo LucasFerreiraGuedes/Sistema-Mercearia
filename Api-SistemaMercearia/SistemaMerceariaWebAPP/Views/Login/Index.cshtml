@@ -1,4 +1,7 @@
-﻿@model Usuario
+﻿<link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+
+
+@model Usuario
 
 @{
     ViewData["Title"] = "Página de Login";
@@ -8,6 +11,9 @@
 
 <br />
 
+<div>
+    <img src="~/images.png">
+</div>
 <form asp-controller="Login" asp-action="LoginUser" method="post">
     <div class="d-flex justify-content-center">
         <div class="container">

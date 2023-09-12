@@ -1,4 +1,5 @@
 ﻿using Api_SistemaMercearia.Context;
+using Api_SistemaMercearia.DTO_s;
 using Api_SistemaMercearia.Models.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,20 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 			return false;
 		}
 
+        public async Task<Usuario> AlterarInformacoesAsync(Usuario usuario)
+        {
+            Usuario user = await GetUserById(usuario.Id);
+
+			if(user != null)
+			{
+				user = usuario;
+				_contextDb.Update(user);
+				_contextDb.SaveChanges();
+				return user;
+			}
+			return null;
+        }
+
         public async Task<IEnumerable<Usuario>> GetAllUsers()
         {
 			return _contextDb.Usuarios;
@@ -43,7 +58,7 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 
         public async Task<Usuario> GetUserById(int id)
 		{
-			Usuario user = await _contextDb.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
+			Usuario user = await _contextDb.Usuarios.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
 			return user;
 		}
 
@@ -59,6 +74,20 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 			}
 			return true;
 
+        }
+
+        public async Task<Usuario> PatchPasswordUser(PatchPasswordUserDTO userDTO)
+        {
+           Usuario user = await GetUserById(userDTO.Id);
+
+			if(user!= null)
+			{
+				user.Senha = userDTO.Senha;
+				_contextDb.Update(user);
+				_contextDb.SaveChanges();
+				return user;
+			}
+			return null;
         }
     }
 }

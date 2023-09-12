@@ -3,15 +3,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using RestSharp;
 using SistemaMerceariaWebAPP.Models;
+using SistemaMerceariaWebAPP.Services.Session;
 
 namespace SistemaMerceariaWebAPP.Controllers
 {
 	public class UsuarioController : Controller
 	{
         private RestClient client;
-        public UsuarioController()
+        private readonly ISessionUser _sessionUser;
+        public UsuarioController(ISessionUser sessionUser)
         {
-            
+            _sessionUser = sessionUser;
         }
       
         public async Task<ActionResult> CadastrarUsuario()
@@ -48,6 +50,7 @@ namespace SistemaMerceariaWebAPP.Controllers
 
             RestResponse response = await client.ExecuteAsync(request);
 
+            _sessionUser.CriarSessaoUsuario(usuarioViewModel.Usuario);
 
             return RedirectToAction("GetAllUsers");
         }
@@ -71,6 +74,27 @@ namespace SistemaMerceariaWebAPP.Controllers
             TempData["MensagemErro"] = "Não há nenhum usuário cadastrado!";
             return View("Usuarios");
 
+        }
+        public IActionResult Perfil()
+        {
+            Usuario usuario = new Usuario();
+            usuario = _sessionUser.BuscarSessaoUsuario();
+
+
+            if (usuario != null)
+            {
+
+                client = new RestClient();
+                var request = new RestRequest("https://localhost:7123/api/Usuario/GetUserByEmail?email=" + usuario.Email, Method.Get);
+
+                RestResponse response = client.Execute(request);
+                usuario = JsonConvert.DeserializeObject<Usuario>(response.Content);
+
+                return View(usuario);
+                
+            }
+            return View();
+            
         }
        
     }
