@@ -9,8 +9,8 @@
 
 <form asp-controller="Usuario" asp-action="SalvarAtualizacaoInformacoes" method="post">
     <input type="hidden" asp-for="@Model.Senha" />
-    <input type="hidden" asp-for="Id" />
-    <input type="hidden" asp-for="UF" />
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="hidden" asp-for="@Model.UF" />
 
     <div class="form-group">
         <label for="Name" class="form-label">Nome</label>

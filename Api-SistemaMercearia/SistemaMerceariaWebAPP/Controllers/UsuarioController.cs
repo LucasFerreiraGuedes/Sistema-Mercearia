@@ -84,11 +84,11 @@ namespace SistemaMerceariaWebAPP.Controllers
             if (usuario != null)
             {
 
-                client = new RestClient();
-                var request = new RestRequest("https://localhost:7123/api/Usuario/GetUserByEmail?email=" + usuario.Email, Method.Get);
+                //client = new RestClient();
+                //var request = new RestRequest("https://localhost:7123/api/Usuario/GetUserByEmail?email=" + usuario.Email, Method.Get);
 
-                RestResponse response = client.Execute(request);
-                usuario = JsonConvert.DeserializeObject<Usuario>(response.Content);
+                //RestResponse response = client.Execute(request);
+                //usuario = JsonConvert.DeserializeObject<Usuario>(response.Content);
 
                 return View(usuario);
                 
