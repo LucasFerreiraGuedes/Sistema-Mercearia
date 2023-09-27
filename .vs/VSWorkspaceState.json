@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Api-SistemaMercearia",
+    "\\Api-SistemaMercearia\\SistemaMerceariaWebAPP",
+    "\\Api-SistemaMercearia\\SistemaMerceariaWebAPP\\Controllers"
   ],
+  "SelectedNode": "\\Api-SistemaMercearia\\SistemaMerceariaWebAPP\\Controllers\\UsuarioController.cs",
   "PreviewInSolutionExplorer": false
 }

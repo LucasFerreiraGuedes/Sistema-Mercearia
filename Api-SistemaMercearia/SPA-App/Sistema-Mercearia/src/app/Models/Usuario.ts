@@ -1,20 +1,20 @@
 export class Usuario {
-    Id: number;
-    Nome: string;
-    Email: string;
-    Senha: string;
-    Uf: string;
-    Telefone: string;
+    id: number;
+    name: string;
+    email: string;
+    senha: string;
+    uf: string;
+    telefone: string;
 
-    constructor(id: number,nome: string, email: string,senha: string,uf:string,telefone:string){
+    constructor(id: number,name: string, email: string,senha: string,uf:string,telefone:string){
 
-        this.Id = id;
-        this.Nome = nome;
-        this.Email = email;
-        this.Senha = senha;
-        this.Uf = uf;
-        this.Telefone = telefone;
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.senha = senha;
+        this.uf = uf;
+        this.telefone = telefone;
        
     }
-
+ 
 }

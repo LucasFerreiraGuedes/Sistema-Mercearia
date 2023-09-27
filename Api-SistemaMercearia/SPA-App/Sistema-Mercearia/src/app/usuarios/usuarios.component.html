@@ -10,11 +10,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of userFake">
-        <th scope="row">1</th>
-        <td>{{user.Nome}}</td>
-        <td>{{user.Email}}</td>
-        <td>{{user.Telefone}}</td>
+      <tr *ngFor="let user of this.usuarios$ | async">
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.telefone}}</td>
       </tr>
     </tbody>
    
