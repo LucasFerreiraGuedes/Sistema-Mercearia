@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class UsuariosComponent implements OnInit {
 
   public usuarios$;
+  public usuarioSelecionado !: Usuario | null;
 
   constructor(private usuarioService: UsuarioServiceService) { 
    this.usuarios$ = this.usuarioService.getAll();
@@ -20,5 +21,12 @@ export class UsuariosComponent implements OnInit {
   
   ngOnInit() {
 
+}
+
+selecionarUsuario(usuario: Usuario){
+   this.usuarioSelecionado = usuario;
+}
+limparUsuarioSelecionado(){
+  this.usuarioSelecionado = null;
 }
 }

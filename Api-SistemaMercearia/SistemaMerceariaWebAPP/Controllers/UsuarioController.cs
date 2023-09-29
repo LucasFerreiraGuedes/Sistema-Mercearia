@@ -43,7 +43,7 @@ namespace SistemaMerceariaWebAPP.Controllers
         public async Task<ActionResult> CadastroUsuario(UsuarioViewModel usuarioViewModel)
         {
             client = new RestClient();
-            var request = new RestRequest("https://localhost:7123/api/Usuario", Method.Post);
+            var request = new RestRequest("http://localhost:7123/api/Usuario", Method.Post);
 
             request.RequestFormat = DataFormat.Json;
             request.AddJsonBody(usuarioViewModel.Usuario);
@@ -60,7 +60,7 @@ namespace SistemaMerceariaWebAPP.Controllers
             // Método responsável por recuperar todos os usuários
 
             client = new RestClient();
-            var request = new RestRequest("https://localhost:7123/api/Usuario/AllUsers", Method.Get);
+            var request = new RestRequest("http://localhost:7123/api/Usuario/AllUsers", Method.Get);
 
             RestResponse response = await client.ExecuteAsync(request);
 
