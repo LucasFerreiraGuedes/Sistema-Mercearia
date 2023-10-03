@@ -46,4 +46,8 @@ submit(usuario : Usuario){
 
 }
 
+apagarUsuario(id : number){
+  this.usuarioService.delete(id).subscribe(() => this.ngOnInit());
+}
+
 }

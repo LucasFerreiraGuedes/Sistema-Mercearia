@@ -10,12 +10,15 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import {HttpClientModule} from '@angular/common/http'
 import { UsuarioServiceService } from './services/UsuarioService.service';
 import { FormsModule } from '@angular/forms';
+import { EstoqueComponent } from './estoque/estoque.component';
+import { ProdutoService } from './services/ProdutoService';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
       NavComponent,
-      UsuariosComponent
+      UsuariosComponent,
+      EstoqueComponent
    ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UsuarioServiceService],
+  providers: [UsuarioServiceService,ProdutoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

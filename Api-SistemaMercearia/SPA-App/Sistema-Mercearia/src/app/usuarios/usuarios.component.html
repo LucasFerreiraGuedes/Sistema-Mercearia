@@ -56,19 +56,21 @@
               <th scope="col">Nome</th>
               <th scope="col">E-mail</th>
               <th scope="col">Telefone</th>
+              <th scope="col">UF</th>
               <th scope="col">Opções</th>
             </tr>
           </thead>
           <tbody>
-            <tr  *ngFor="let user of this.usuarios$ | async">
-              <th scope="row">{{user.id}}</th>
+            <tr  *ngFor="let user of this.usuarios$ | async; let i = index">
+              <th scope="row">{{i + 1}}</th>
               <td>{{user.name}}</td>
               <td>{{user.email}}</td>
               <td>{{user.telefone}}</td>
+              <td>{{user.uf}}</td>
               <td>
                   <div class="btn-group">
                     <button (click)="selecionarUsuario(user)" class="btn btn-primary">Editar</button>
-                    <button  class="btn btn-danger">Apagar</button>
+                    <button (click)="apagarUsuario(user.id!)" class="btn btn-danger">Apagar</button>
                   </div>
               </td>
             </tr>

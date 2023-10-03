@@ -26,4 +26,8 @@ put(usuario: Usuario){
   return this.http.put<Usuario>(`${this.baseUrl}/${usuario.id}`,usuario);
 }
 
+delete(id : number){
+  return this.http.delete<void>(`${this.baseUrl}/${id}`)
+}
+
 }

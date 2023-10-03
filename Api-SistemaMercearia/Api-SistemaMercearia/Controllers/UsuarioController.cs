@@ -95,6 +95,19 @@ namespace Api_SistemaMercearia.Controllers
             }
             return Unauthorized();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            bool response = await _context.DeleteAsync(id);
+
+            if (response)
+            {
+                return Ok();
+            }
+            return BadRequest("Não foi possível encontrar e apagar o usuário com este ID");
+
+        }
          
     }
 }

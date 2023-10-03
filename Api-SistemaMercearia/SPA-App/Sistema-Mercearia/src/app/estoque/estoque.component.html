@@ -1,0 +1,21 @@
+<div class="container">
+ <div class="row">
+    <div *ngFor="let produto of produtos$ | async; let i = index">
+      <div class="col-sm-6">
+        <div class="card" style="margin-bottom: 30px;">
+          <div class="card-body">
+            <h5 class="card-title">{{produto.descricao}}</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>Marca:</b> {{produto.marca}}</li>
+              <li class="list-group-item"><b>Preço:</b> {{produto.valor}}</li>
+              <li class="list-group-item"><b>Estoque:</b> {{produto.estoque}}</li>
+            </ul>
+            <a href="#" class="btn btn-warning">Editar Informações</a>
+            <a href="#" class="btn btn-danger">Apagar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

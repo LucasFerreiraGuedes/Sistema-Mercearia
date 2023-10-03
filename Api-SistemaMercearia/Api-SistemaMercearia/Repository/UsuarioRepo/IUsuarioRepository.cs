@@ -16,5 +16,7 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 
 		Task<Usuario> PatchPasswordUser(PatchPasswordUserDTO userDTO);
 
+		Task<Boolean> DeleteAsync(int id);
+
 	}
 }

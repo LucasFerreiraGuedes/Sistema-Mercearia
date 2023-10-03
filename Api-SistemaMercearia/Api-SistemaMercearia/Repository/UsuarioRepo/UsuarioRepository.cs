@@ -40,7 +40,7 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 			return null;
         }
 
-        public async Task<IEnumerable<Usuario>> GetAllUsers()
+		public async Task<IEnumerable<Usuario>> GetAllUsers()
         {
 			return _contextDb.Usuarios;
         }
@@ -89,5 +89,19 @@ namespace Api_SistemaMercearia.Repository.UsuarioRepo
 			}
 			return null;
         }
-    }
+
+		public async Task<bool> DeleteAsync(int id)
+		{
+			Usuario user = await GetUserById(id);
+
+			if(user!= null)
+			{
+				_contextDb.Remove(user);
+				_contextDb.SaveChanges();
+				return true;
+			}
+			return false;
+		}
+
+	}
 }
