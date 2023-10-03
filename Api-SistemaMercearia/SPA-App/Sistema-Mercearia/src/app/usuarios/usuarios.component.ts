@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class UsuariosComponent implements OnInit {
 
   public usuarios$ = new Observable<Usuario[]>();
+  
   public usuarioSelecionado !: Usuario | null;
 
   constructor(private usuarioService: UsuarioServiceService) { 

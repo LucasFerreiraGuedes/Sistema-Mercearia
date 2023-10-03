@@ -66,6 +66,7 @@ namespace Api_SistemaMercearia.Repository.ProdutoRepo
                     product.Codigo = produto.Codigo;
                     product.Descricao = produto.Descricao;
                     product.Estoque = produto.Estoque;
+					product.Marca = produto.Marca;
 					product.Valor = produto.Valor;
 					
 

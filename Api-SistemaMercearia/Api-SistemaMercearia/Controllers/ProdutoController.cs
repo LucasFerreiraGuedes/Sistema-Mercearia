@@ -71,10 +71,11 @@ namespace Api_SistemaMercearia.Controllers
 
 		}
 
-		[HttpPut]
-		public async Task<ActionResult> PutProduct(Produto produto)
+		[HttpPut("{id}")]
+		public async Task<ActionResult> PutProduct(int id,ProdutoDTO produto)
 		{
-			await _context.PutProduct(produto);
+			var product = _mapper.Map<Produto>(produto);
+			await _context.PutProduct(product);
 			return Ok();
 		}
 
@@ -84,7 +85,7 @@ namespace Api_SistemaMercearia.Controllers
 			return Ok("ok");
 		}
 
-		[HttpDelete]
+		[HttpDelete("{id}")]
 		public async Task<ActionResult> DeleteProduct(int id)
 		{
 
