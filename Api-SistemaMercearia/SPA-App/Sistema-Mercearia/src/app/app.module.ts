@@ -9,9 +9,10 @@ import { NavComponent } from './nav/nav.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import {HttpClientModule} from '@angular/common/http'
 import { UsuarioServiceService } from './services/UsuarioService.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
       NavComponent,
       UsuariosComponent
@@ -22,7 +23,8 @@ import { UsuarioServiceService } from './services/UsuarioService.service';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [UsuarioServiceService],
   bootstrap: [AppComponent]

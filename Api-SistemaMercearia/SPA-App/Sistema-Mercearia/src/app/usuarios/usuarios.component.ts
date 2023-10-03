@@ -11,22 +11,39 @@ import { Observable } from 'rxjs';
 })
 export class UsuariosComponent implements OnInit {
 
-  public usuarios$;
+  public usuarios$ = new Observable<Usuario[]>();
   public usuarioSelecionado !: Usuario | null;
 
   constructor(private usuarioService: UsuarioServiceService) { 
-   this.usuarios$ = this.usuarioService.getAll();
+   
 
   }
   
   ngOnInit() {
-
+    this.usuarios$ = this.usuarioService.getAll();
 }
 
 selecionarUsuario(usuario: Usuario){
    this.usuarioSelecionado = usuario;
+  
 }
 limparUsuarioSelecionado(){
   this.usuarioSelecionado = null;
 }
+
+novoUsuario(){
+  this.usuarioSelecionado = new Usuario();
+
+}
+
+submit(usuario : Usuario){
+   if(usuario.id == undefined){
+    this.usuarioService.post(usuario).subscribe(() => this.ngOnInit());
+   }
+   else{
+    this.usuarioService.put(usuario).subscribe(() => this.ngOnInit());
+   }
+
+}
+
 }

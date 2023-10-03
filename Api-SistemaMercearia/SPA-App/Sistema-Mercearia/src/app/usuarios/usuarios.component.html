@@ -1,23 +1,45 @@
 
 
   <div class="row">
+<div class="container">
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-sm-9">
+          <h1 style="margin-left: 100px; margin-bottom: 25px;">
+            Usuários
+          </h1>
+        </div>
+        <div class="col-sm-2" style="margin-top: 12PX;">
+          <button (click)="novoUsuario()"  type="button" class="btn btn-success">Cadastrar </button>
+        </div>
+      </div>
+    </div>
+
+
 
     <div class="col-sm-4" *ngIf="usuarioSelecionado">
       <div class="container">
       <form>
         <div class="mb-3">
           <label  class="form-label">Nome</label>
-          <input type="text" class="form-control" value="{{usuarioSelecionado.name}}" >
+          <input type="text" class="form-control"  name = "nome" [(ngModel)] = "usuarioSelecionado.name" >
         </div>
         <div class="mb-3">
           <label  class="form-label">E-mail</label>
-          <input type="email" class="form-control" value="{{usuarioSelecionado.email}}">
+          <input type="email" class="form-control" name = "email" [(ngModel)] = "usuarioSelecionado.email">
         </div>
         <div class="mb-3">
           <label  class="form-label">Telefone</label>
-          <input type="text" class="form-control" value="{{usuarioSelecionado.telefone}}">
+          <input type="text" class="form-control" name="Telefone" [(ngModel)] = "usuarioSelecionado.telefone">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+          <label  class="form-label">UF</label>
+          <input type="text" class="form-control" name="UF" [(ngModel)] = "usuarioSelecionado.uf">
+        </div>
+        <div class="mb-3" *ngIf="usuarioSelecionado.id == undefined">
+          <label  class="form-label">Senha</label>
+          <input type="password" class="form-control" name="password" [(ngModel)] = "usuarioSelecionado.senha">
+        </div>
+        <button (click)="submit(usuarioSelecionado)" type="submit" class="btn btn-primary">Submit</button>
         <button (click)="limparUsuarioSelecionado()" type="submit" class="btn btn-warning">Voltar</button>
       </form>
       </div>
@@ -26,6 +48,7 @@
   
     <div [ngClass]="{'col-sm-12': !usuarioSelecionado, 'col-sm-6': usuarioSelecionado}">
       <div class="container"> 
+        
         <table class="table">
           <thead>
             <tr>

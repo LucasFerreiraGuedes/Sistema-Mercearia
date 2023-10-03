@@ -18,5 +18,12 @@ baseUrl = `${environment.baseUrlApi}/Usuario`;
     return this.http.get<Usuario[]>(`${this.baseUrl}/AllUsers`)
 
 }
+post(usuario: Usuario){
+  return this.http.post<Usuario>(`${this.baseUrl}`,usuario);
+}
+
+put(usuario: Usuario){
+  return this.http.put<Usuario>(`${this.baseUrl}/${usuario.id}`,usuario);
+}
 
 }
