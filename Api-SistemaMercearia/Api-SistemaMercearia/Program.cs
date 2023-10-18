@@ -1,6 +1,7 @@
 using Api_SistemaMercearia.Context;
 using Api_SistemaMercearia.Repository.ProdutoRepo;
 using Api_SistemaMercearia.Repository.UsuarioRepo;
+using Api_SistemaMercearia.Repository.VendaRepo;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ContextDb>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString")));
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IVendaRepository, VendaRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

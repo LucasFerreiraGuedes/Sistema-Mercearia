@@ -4,6 +4,7 @@ using Api_SistemaMercearia.Repository.ProdutoRepo;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace Api_SistemaMercearia.Controllers
 {
     [Route("api/[controller]")]
@@ -12,6 +13,9 @@ namespace Api_SistemaMercearia.Controllers
 	{
 		private readonly IProdutoRepository _context;
 		private readonly IMapper _mapper;
+
+		
+
         public ProdutoController(IProdutoRepository context, IMapper mapper)
         {
             _context = context;
@@ -24,9 +28,12 @@ namespace Api_SistemaMercearia.Controllers
 
 			var products = await _context.GetAllProducts();
 
-			if(products.Count() != 0) 
+			if(products.Count() > 0) 
 			{
 				List<ProdutoDTO> result = _mapper.Map<IEnumerable<ProdutoDTO>>(products).ToList();
+
+				result.ForEach(x => x.Valor = Math.Round(x.Valor,2));
+
 				return Ok(result);
 			}
 			var problemDetails = new ProblemDetails()
@@ -65,7 +72,7 @@ namespace Api_SistemaMercearia.Controllers
 
 			if (resposta)
 			{
-				return Ok("Produto Adicionado com sucesso");
+				return Ok();
 			}
 			throw new Exception("O produto não pode ser nulo");
 
@@ -93,7 +100,7 @@ namespace Api_SistemaMercearia.Controllers
 
             if (resposta)
             {
-                return Ok("Produto apagado com sucesso");
+                return Ok();
             }
 
 			var problemDetails = new ProblemDetails()

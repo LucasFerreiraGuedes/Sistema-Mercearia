@@ -9,9 +9,10 @@ namespace Api_SistemaMercearia.Models
         public DateTime DataDaVenda { get; set; }
         public IEnumerable<ProdutoVenda>? ProdutosVendidos { get; set; }
 
-        public Venda(DateTime dataDaVenda)
+        public Venda(DateTime dataDaVenda,double valorTotal)
         {
             DataDaVenda = DateTime.Now;
+            this.ValorTotal = valorTotal;
         }
     }
 }

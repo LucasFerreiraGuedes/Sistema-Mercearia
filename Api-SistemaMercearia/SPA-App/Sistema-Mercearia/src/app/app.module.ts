@@ -12,13 +12,15 @@ import { UsuarioServiceService } from './services/UsuarioService.service';
 import { FormsModule } from '@angular/forms';
 import { EstoqueComponent } from './estoque/estoque.component';
 import { ProdutoService } from './services/ProdutoService';
+import { VendasComponent } from './vendas/vendas.component';
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
       NavComponent,
       UsuariosComponent,
-      EstoqueComponent
+      EstoqueComponent,
+      VendasComponent
    ],
   imports: [
     BrowserModule,
