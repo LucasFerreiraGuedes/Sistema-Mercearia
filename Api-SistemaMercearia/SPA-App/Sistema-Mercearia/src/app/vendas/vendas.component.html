@@ -1,69 +1,85 @@
 <div class="container">
  <div class="row">
-  <div class="col-md-9" >
+  <div [ngClass]="{'col-md-8': ResumoCarrinho, 'col-md-10': !ResumoCarrinho}" >
     <h2 style="text-align: center; margin-top: 30px;">
       Realizar Vendas!
     </h2>
   </div>
-  <div class="col-md-2">
-    <img src="../../assets/Images/carrinhoDeCompras-removebg-preview.png" width="80" style="cursor: pointer;">
+  <div [ngClass]="{'col-md-4': ResumoCarrinho, 'col-md-2': !ResumoCarrinho}">
+    <img (click)="resumoCarrinho()" src="../../assets/Images/carrinhoDeCompras-removebg-preview.png" width="80" style="cursor: pointer;">
+    <div *ngIf="ResumoCarrinho">
+      <div>
+      <div class="card-body">
+        <h5 class="card-title">Meu Carrinho</h5>
+        <br>
+        <div *ngFor="let produtosCarrinho of carrinhoDeCompras.Produtos">
+          <p class="card-text"> <b>{{produtosCarrinho.descricao}}</b> </p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Marca:</b> {{produtosCarrinho.marca}}</li>
+            <li class="list-group-item"><b>Preço:</b> {{produtosCarrinho.valor}} R$</li>
+            <li class="list-group-item"><b>Quantidade:</b> {{produtosCarrinho.quantidadeVendida}}</li>
+          </ul>
+          <br>
+        </div>
+        <br>
+        <p>Preço Total: {{carrinhoDeCompras.ValorTotal}} R$</p>
+      </div>
+    </div> 
+  </div>
   </div>
  </div>
 
+      <div class="row">
+        <div class="col-md-6" *ngIf="produtoSelecionado">
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Descrição do Produto</label>
+              <input disabled="true" type="text" class="form-control" name="descricao" [(ngModel)] = "produtoSelecionado.descricao">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Código do Produto</label>
+              <input disabled="true" type="number" class="form-control" name="codigo" [(ngModel)] = "produtoSelecionado.id">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Marca</label>
+              <input disabled="true" type="text" name="marca" class="form-control" [(ngModel)] = "produtoSelecionado.marca">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Preço</label>
+              <input disabled="true" type="number" class="form-control" name="preco" [(ngModel)] ="produtoSelecionado.valor">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Quantidade em Estoque</label>
+              <input disabled="true" type="number" class="form-control" name="estoque" [(ngModel)] = "produtoSelecionado.estoque">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Quantidade á ser vendida</label>
+              <input type="number" class="form-control" name="quantidaVendida" min="1" [max]="produtoSelecionado.estoque!" [(ngModel)] = "quantidadeVendida">
+            </div>
+            
+            <button (click)="adicionarAoCarrinho()" type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+            <button (click)="limparProdutoSelecionado()" type="submit" class="btn btn-warning">Voltar</button>
+          </form>
+        </div>
 
-   <div class="row">
-    <div class="col-sm-5" *ngIf="produtoSelecionado">
-      <form>
-        <div class="mb-3">
-          <label class="form-label">Descrição do Produto</label>
-          <input disabled="true" type="text" class="form-control" name="descricao" [(ngModel)] = "produtoSelecionado.descricao">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Código do Produto</label>
-          <input disabled="true" type="number" class="form-control" name="codigo" [(ngModel)] = "produtoSelecionado.id">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Marca</label>
-          <input disabled="true" type="text" name="marca" class="form-control" [(ngModel)] = "produtoSelecionado.marca">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Preço</label>
-          <input disabled="true" type="number" class="form-control" name="preco" [(ngModel)] ="produtoSelecionado.valor">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Quantidade em Estoque</label>
-          <input disabled="true" type="number" class="form-control" name="estoque" [(ngModel)] = "produtoSelecionado.estoque">
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Quantidade á ser vendida</label>
-          <input type="number" class="form-control" name="quantidaVendida" min="1" [max]="produtoSelecionado.estoque!" [(ngModel)] = "quantidadeVendida">
-        </div>
-        
-        <button (click)="adicionarAoCarrinho()" type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
-        <button (click)="limparProdutoSelecionado()" type="submit" class="btn btn-warning">Voltar</button>
-      </form>
-     </div>
 
-
-    <div class="col-md-5" *ngFor="let produto of produtos$ | async; let i = index">
-      <div >
-        <div class="card" style="margin-bottom: 30px; margin-top: 30px;">
-          <div class="card-body">
-            <h5 class="card-title">{{produto.descricao}}</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><b>Marca:</b> {{produto.marca}}</li>
-              <li class="list-group-item"><b>Preço:</b> {{produto.valor}} R$</li>
-              <li class="list-group-item"><b>Estoque:</b> {{produto.estoque}}</li>
-            </ul>
-            <br>
-            <a (click)="selecionarProduto(produto)" class="btn btn-success">Realizar Venda</a>
+        <div [ngClass]="{'col-md-7': ResumoCarrinho, 'col-md-5': !ResumoCarrinho}" *ngFor="let produto of produtos$ | async; let i = index">
+          <div>
+            <div class="card" style="margin-bottom: 30px; margin-top: 30px;">
+              <div class="card-body">
+                <h5 class="card-title">{{produto.descricao}}</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Marca:</b> {{produto.marca}}</li>
+                  <li class="list-group-item"><b>Preço:</b> {{produto.valor}} R$</li>
+                  <li class="list-group-item"><b>Estoque:</b> {{produto.estoque}}</li>
+                </ul>
+                <br>
+                <a (click)="selecionarProduto(produto)" class="btn btn-success">Realizar Venda</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-     
-    
 
    </div>
 

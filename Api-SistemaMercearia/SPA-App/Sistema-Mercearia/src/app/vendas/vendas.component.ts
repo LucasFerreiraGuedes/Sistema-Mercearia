@@ -17,6 +17,7 @@ export class VendasComponent implements OnInit {
   public produtoSelecionado! : Produto | null;
   public carrinhoDeCompras = new CarrinhoDeCompra();
   public quantidadeVendida : number = 1;
+  public ResumoCarrinho : boolean = false;
 
   constructor(private produtoService: ProdutoService) { 
     
@@ -28,6 +29,7 @@ export class VendasComponent implements OnInit {
 
   selecionarProduto(produto: Produto){
       this.produtoSelecionado = produto;
+      this.ResumoCarrinho = false;
      
   }
 
@@ -48,6 +50,10 @@ export class VendasComponent implements OnInit {
     this.limparProdutoSelecionado();
 
   }
+  
+resumoCarrinho(){
+ this.ResumoCarrinho = true;
+}
 
  
 
