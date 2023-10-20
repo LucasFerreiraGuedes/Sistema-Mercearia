@@ -21,10 +21,6 @@
           <input type="text" class="form-control" name="descricao" [(ngModel)] = "produtoSelecionado.descricao">
         </div>
         <div class="mb-3">
-          <label class="form-label">Código do Produto</label>
-          <input type="number" class="form-control" name="codigo" [(ngModel)] = "produtoSelecionado.codigo">
-        </div>
-        <div class="mb-3">
           <label class="form-label">Marca</label>
           <input type="text" name="marca" class="form-control" [(ngModel)] = "produtoSelecionado.marca">
         </div>
@@ -51,6 +47,7 @@
                 <h5 class="card-title">{{produto.descricao}}</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Código:</b> {{produto.id}}</li>
                   <li class="list-group-item"><b>Marca:</b> {{produto.marca}}</li>
                   <li class="list-group-item"><b>Preço:</b> {{produto.valor}} R$</li>
                   <li class="list-group-item"><b>Estoque:</b> {{produto.estoque}}</li>

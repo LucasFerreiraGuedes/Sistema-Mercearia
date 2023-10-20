@@ -1,17 +1,11 @@
 export class Produto {
     id?: number;
-    codigo?: number;
-    descricao?: string;
-    marca?: string;
-    valor?: number;
-    estoque?: number
+    descricao: string = '';
+    marca: string = '';
+    valor: number = 0;
+    estoque: number = 0
 
-    constructor(id ?: number,codigo ?: number, descricao ?: string, marca ?: string, valor ?: number, estoque ?: number) {
-       this.id = id;
-       this.codigo = codigo;
-       this.descricao = descricao;
-       this.marca = marca;
-       this.valor = valor;
-       this.estoque = estoque;
+    constructor() {
+       
     }
 }

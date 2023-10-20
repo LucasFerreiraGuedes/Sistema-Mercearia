@@ -1,12 +1,18 @@
 <div class="container">
  <div class="row">
-  <h2 style="text-align: center; margin-top: 30px;">
-    Realizar Vendas!
-  </h2>
+  <div class="col-md-9" >
+    <h2 style="text-align: center; margin-top: 30px;">
+      Realizar Vendas!
+    </h2>
+  </div>
+  <div class="col-md-2">
+    <img src="../../assets/Images/carrinhoDeCompras-removebg-preview.png" width="80" style="cursor: pointer;">
+  </div>
  </div>
-   <div class="row">
 
-    <div class="col-sm-6" *ngIf="produtoSelecionado">
+
+   <div class="row">
+    <div class="col-sm-5" *ngIf="produtoSelecionado">
       <form>
         <div class="mb-3">
           <label class="form-label">Descrição do Produto</label>
@@ -14,7 +20,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Código do Produto</label>
-          <input disabled="true" type="number" class="form-control" name="codigo" [(ngModel)] = "produtoSelecionado.codigo">
+          <input disabled="true" type="number" class="form-control" name="codigo" [(ngModel)] = "produtoSelecionado.id">
         </div>
         <div class="mb-3">
           <label class="form-label">Marca</label>
@@ -30,16 +36,16 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Quantidade á ser vendida</label>
-          <input type="number" class="form-control" name="QuantidaVendida" min="1" max="{{produtoSelecionado.estoque}}">
+          <input type="number" class="form-control" name="quantidaVendida" min="1" [max]="produtoSelecionado.estoque!" [(ngModel)] = "quantidadeVendida">
         </div>
         
-        <button type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
+        <button (click)="adicionarAoCarrinho()" type="submit" class="btn btn-primary">Adicionar ao Carrinho</button>
         <button (click)="limparProdutoSelecionado()" type="submit" class="btn btn-warning">Voltar</button>
       </form>
      </div>
 
 
-    <div class="col-md-6" *ngFor="let produto of produtos$ | async; let i = index">
+    <div class="col-md-5" *ngFor="let produto of produtos$ | async; let i = index">
       <div >
         <div class="card" style="margin-bottom: 30px; margin-top: 30px;">
           <div class="card-body">
@@ -56,7 +62,7 @@
         </div>
       </div>
     </div>
-
+     
     
 
    </div>

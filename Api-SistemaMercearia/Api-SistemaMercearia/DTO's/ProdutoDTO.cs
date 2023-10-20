@@ -2,15 +2,15 @@
 {
 	public class ProdutoDTO
 	{
-        public int Codigo { get; set; }
+        public int Id { get; set; }
 		public string Descricao { get; set; }
 		public string Marca { get; set; }
 		public double Valor { get; set; }
 		public int Estoque { get; set; }
 
-		public ProdutoDTO(int codigo, string descricao, string marca, double valor, int estoque)
+		public ProdutoDTO(int id, string descricao, string marca, double valor, int estoque)
 		{
-			Codigo = codigo;
+			Id = id;
 			Descricao = descricao;
 			Marca = marca;
 			Valor = valor;

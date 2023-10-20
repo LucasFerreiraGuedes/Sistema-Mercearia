@@ -63,7 +63,7 @@ namespace Api_SistemaMercearia.Repository.ProdutoRepo
 
                 if (product != null)
                 {
-                    product.Codigo = produto.Codigo;
+                    
                     product.Descricao = produto.Descricao;
                     product.Estoque = produto.Estoque;
 					product.Marca = produto.Marca;
