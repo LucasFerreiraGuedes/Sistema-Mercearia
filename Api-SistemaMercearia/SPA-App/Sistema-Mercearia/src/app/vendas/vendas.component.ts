@@ -40,21 +40,31 @@ export class VendasComponent implements OnInit {
   adicionarAoCarrinho(){
     
    var produto = new ProdutoCarrinho(this.produtoSelecionado!, this.quantidadeVendida);
-   
-    this.carrinhoDeCompras.Produtos.push(produto);
 
+    this.produtoSelecionado!.estoque -= this.quantidadeVendida;
+
+    this.carrinhoDeCompras.AdicionaProduto(produto);
     this.carrinhoDeCompras.CalculaValorCompra();
-    console.log(this.carrinhoDeCompras.Produtos);
-    console.log(this.carrinhoDeCompras.ValorTotal);
 
+    this.quantidadeVendida = 1;
     this.limparProdutoSelecionado();
-
   }
   
-resumoCarrinho(){
- this.ResumoCarrinho = true;
-}
+  resumoCarrinho(){
 
- 
+    if(this.ResumoCarrinho){
+      this.ResumoCarrinho = false;
+    }
+    this.ResumoCarrinho = true;
+  }  
+
+  limparCarrinho(){
+    
+    this.carrinhoDeCompras.Produtos = [];
+    this.carrinhoDeCompras.ValorTotal = 0;
+
+    this.ngOnInit();
+
+  }
 
 }

@@ -18,7 +18,7 @@ export class EstoqueComponent implements OnInit {
 
   ngOnInit() {
     this.produtos$ = this.produtoService.getAll();
-    console.log(this.produtos$)
+    
   }
 
   selecionarProduto(produto : Produto){
